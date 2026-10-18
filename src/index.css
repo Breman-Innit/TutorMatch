@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+/* Dark mode is driven by <html data-theme="dark"> (set before first paint in index.html). */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ------------------------------------------------------------------ */
+/* Design tokens — ported from the Android app's AppColors object.     */
+/* "-ink" tokens are text-safe shades (WCAG AA on card/raised surfaces) */
+/* of the brighter fill colours, which are kept for icons and fills.    */
+/* ------------------------------------------------------------------ */
+:root {
+  color-scheme: light;
+
+  --canvas: #f5f4ff;
+  --surface: #ffffff;
+  --raised: #eeecff;
+  --card: #ffffff;
+  --line: #e0deff;
+
+  --ink: #1a1640;
+  --ink-soft: #5c5882;
+  --ink-muted: #6a678e;
+
+  --primary: #5a52e0;
+  --primary-deep: #3d35c9;
+  --primary-soft: #7b74f5;
+  --primary-ink: #4a42d0;
+
+  --accent: #e84d6f;
+  --accent-ink: #c93a66;
+  --gold: #e09b10;
+  --gold-ink: #9a6500;
+  --success: #00a87a;
+  --success-ink: #00805e;
+  --warning: #e8861e;
+  --warning-ink: #b45f06;
+  --danger: #e03055;
+  --danger-ink: #d12b4f;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --canvas: #0f0e1a;
+  --surface: #1a1828;
+  --raised: #242236;
+  --card: #1e1c2e;
+  --line: #2a2840;
+
+  --ink: #f0eeff;
+  --ink-soft: #9b98b8;
+  --ink-muted: #928fb6;
+
+  --primary: #6c63ff;
+  --primary-deep: #3d35c9;
+  --primary-soft: #9c95ff;
+  --primary-ink: #9c95ff;
+
+  --accent: #ff6584;
+  --accent-ink: #ff6584;
+  --gold: #ffb830;
+  --gold-ink: #ffb830;
+  --success: #00c896;
+  --success-ink: #00c896;
+  --warning: #ff9f43;
+  --warning-ink: #ff9f43;
+  --danger: #ff5e7d;
+  --danger-ink: #ff5e7d;
+}
+
+@theme inline {
+  --font-sans: "Figtree Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque Variable", "Figtree Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-raised: var(--raised);
+  --color-card: var(--card);
+  --color-line: var(--line);
+
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-muted: var(--ink-muted);
+
+  --color-primary: var(--primary);
+  --color-primary-deep: var(--primary-deep);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-ink: var(--primary-ink);
+
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-gold: var(--gold);
+  --color-gold-ink: var(--gold-ink);
+  --color-success: var(--success);
+  --color-success-ink: var(--success-ink);
+  --color-warning: var(--warning);
+  --color-warning-ink: var(--warning-ink);
+  --color-danger: var(--danger);
+  --color-danger-ink: var(--danger-ink);
+
+  /* Radii from the Android shapes: cards 20, fields 16, icon tiles 12. Pills use rounded-full. */
+  --radius-card: 20px;
+  --radius-field: 16px;
+  --radius-tile: 12px;
+
+  --animate-pop-in: pop-in 180ms cubic-bezier(0.2, 0.9, 0.3, 1.2);
+  --animate-fade-in: fade-in 160ms ease-out;
+  --animate-toast-in: toast-in 220ms cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.96) translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ------------------------------------------------------------------ */
+/* Filled gradients. White text sits on these, so every stop is dark    */
+/* enough for AA contrast in both themes (gold uses dark text instead). */
+/* ------------------------------------------------------------------ */
+@utility bg-grad-primary {
+  background-image: linear-gradient(135deg, #5f57f0, #3d35c9);
+}
+@utility bg-grad-accent {
+  background-image: linear-gradient(135deg, #d63a63, #c9482f);
+}
+@utility bg-grad-success {
+  background-image: linear-gradient(135deg, #00805e, #00778f);
+}
+@utility bg-grad-danger {
+  background-image: linear-gradient(135deg, #d12b4f, #c23a2a);
+}
+@utility bg-grad-gold {
+  background-image: linear-gradient(135deg, #ffb830, #ff9a3c);
+}
+
+/* Soft glows used behind hero screens (splash, onboarding, login). */
+@utility bg-glow-primary {
+  background-image: radial-gradient(closest-side, color-mix(in srgb, var(--primary) 25%, transparent), transparent);
+}
+@utility bg-glow-accent {
+  background-image: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 18%, transparent), transparent);
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-canvas font-sans text-ink antialiased;
+    min-height: 100dvh;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight;
+  }
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+  ::placeholder {
+    color: var(--ink-muted);
+    opacity: 1;
+  }
+  ::selection {
+    background: color-mix(in srgb, var(--primary) 30%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
