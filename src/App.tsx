@@ -4,6 +4,7 @@ import Placeholder from "@/pages/Placeholder";
 import Onboarding from "@/pages/Onboarding";
 import Login from "@/pages/Login";
 import Signup from "@/pages/Signup";
+import Home from "@/pages/Home";
 import ComponentGallery from "@/pages/ComponentGallery";
 import { ThemeProvider } from "@/theme/ThemeProvider";
 import { ToastProvider } from "@/components/ui";
@@ -23,7 +24,7 @@ export default function App() {
             <Route path={ROUTES.login} element={<Login />} />
             <Route path={ROUTES.signup} element={<Signup />} />
 
-            <Route path={ROUTES.home} element={<Placeholder title="Find your tutor" />} />
+            <Route path={ROUTES.home} element={<Home />} />
             <Route path={ROUTES.tutor()} element={<Placeholder title="Tutor profile" />} />
             <Route path={ROUTES.tutorReviews()} element={<Placeholder title="Tutor reviews" />} />
             <Route path={ROUTES.book()} element={<Placeholder title="Book a session" />} />
