@@ -147,7 +147,7 @@
     @apply font-display tracking-tight;
   }
   :focus-visible {
-    outline: 2px solid var(--primary);
+    outline: 3px solid var(--focus);
     outline-offset: 2px;
   }
   ::placeholder {
@@ -156,6 +156,19 @@
   }
   ::selection {
     background: color-mix(in srgb, var(--primary) 30%, transparent);
+  }
+}
+
+/* Toasts sit above the mobile bottom bar whenever the app shell is on screen. */
+:root {
+  --bottom-nav-h: 0px;
+}
+body:has([data-app-shell]) {
+  --bottom-nav-h: 4rem;
+}
+@media (min-width: 768px) {
+  body:has([data-app-shell]) {
+    --bottom-nav-h: 0px;
   }
 }
 

@@ -5,6 +5,7 @@ import Onboarding from "@/pages/Onboarding";
 import Login from "@/pages/Login";
 import Signup from "@/pages/Signup";
 import Home from "@/pages/Home";
+import { AppShell } from "@/components/layout/AppShell";
 import ComponentGallery from "@/pages/ComponentGallery";
 import { ThemeProvider } from "@/theme/ThemeProvider";
 import { ToastProvider } from "@/components/ui";
@@ -24,7 +25,8 @@ export default function App() {
             <Route path={ROUTES.login} element={<Login />} />
             <Route path={ROUTES.signup} element={<Signup />} />
 
-            <Route path={ROUTES.home} element={<Home />} />
+            <Route element={<AppShell />}>
+              <Route path={ROUTES.home} element={<Home />} />
             <Route path={ROUTES.tutor()} element={<Placeholder title="Tutor profile" />} />
             <Route path={ROUTES.tutorReviews()} element={<Placeholder title="Tutor reviews" />} />
             <Route path={ROUTES.book()} element={<Placeholder title="Book a session" />} />
@@ -42,6 +44,7 @@ export default function App() {
 
             <Route path={ROUTES.becomeTutor} element={<Placeholder title="Become a tutor" />} />
             <Route path={ROUTES.dashboard} element={<Placeholder title="Tutor dashboard" />} />
+            </Route>
 
             <Route path={ROUTES.gallery} element={<ComponentGallery />} />
             <Route path="*" element={<Navigate to={ROUTES.home} replace />} />
