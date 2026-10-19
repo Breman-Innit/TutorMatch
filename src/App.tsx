@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { ROUTES } from "@/routes";
 import Placeholder from "@/pages/Placeholder";
 import Onboarding from "@/pages/Onboarding";
+import Login from "@/pages/Login";
 import ComponentGallery from "@/pages/ComponentGallery";
 import { ThemeProvider } from "@/theme/ThemeProvider";
 import { ToastProvider } from "@/components/ui";
@@ -18,7 +19,7 @@ export default function App() {
         <BrowserRouter>
           <Routes>
             <Route path={ROUTES.welcome} element={<Onboarding />} />
-            <Route path={ROUTES.login} element={<Placeholder title="Sign in" />} />
+            <Route path={ROUTES.login} element={<Login />} />
             <Route path={ROUTES.signup} element={<Placeholder title="Create account" />} />
 
             <Route path={ROUTES.home} element={<Placeholder title="Find your tutor" />} />
