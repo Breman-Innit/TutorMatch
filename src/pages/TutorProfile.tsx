@@ -1,7 +1,9 @@
 import type { ReactNode } from "react";
 import { Link, useNavigate, useParams } from "react-router";
-import { IconBack, IconBook, IconCalendar, IconCap, IconCheckCircle, IconClock, IconPin, IconUser, type IconComponent } from "@/components/icons";
+import { IconBack, IconBook, IconCalendar, IconCap, IconCheckCircle, IconClock, IconPin, IconStar, IconUser, type IconComponent } from "@/components/icons";
+import { ReviewCard } from "@/components/ReviewCard";
 import { Avatar, Button, Card, IconTile, StarRating } from "@/components/ui";
+import { REVIEWS } from "@/data/reviews";
 import { TUTORS } from "@/data/tutors";
 import { ROUTES } from "@/routes";
 
@@ -35,6 +37,7 @@ export default function TutorProfile() {
   }
 
   const isStaff = tutor.role === "Staff Tutor";
+  const reviews = REVIEWS.filter((r) => r.tutorId === tutor.id);
 
   return (
     <main className="mx-auto w-full max-w-5xl px-5 py-6 sm:px-8 sm:py-8">
@@ -110,6 +113,24 @@ export default function TutorProfile() {
             {tutor.location}
           </p>
         </Section>
+
+        {reviews.length > 0 && (
+          <Section icon={IconStar} title="Recent reviews" className="md:col-span-2">
+            <ul className="flex flex-col gap-3">
+              {reviews.slice(0, 2).map((r) => (
+                <li key={r.id}>
+                  <ReviewCard review={r} />
+                </li>
+              ))}
+            </ul>
+            <Link
+              to={ROUTES.tutorReviews(tutor.id)}
+              className="mt-4 inline-block text-sm font-semibold text-primary underline-offset-4 hover:underline"
+            >
+              See all reviews
+            </Link>
+          </Section>
+        )}
       </div>
     </main>
   );
