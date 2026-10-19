@@ -11,62 +11,42 @@
 :root {
   color-scheme: light;
 
-  --canvas: #f5f4ff;
+  /* Autolyn navy system: deep navy + soft blue tints on white. */
+  --canvas: #ffffff;
   --surface: #ffffff;
-  --raised: #eeecff;
+  --raised: #edf3fc;
+  --wash: #f6f9fe;
   --card: #ffffff;
-  --line: #e0deff;
+  --line: #dce4ef;
+  --line-strong: #a9b8ce;
+  --tint-3: #dce8f8;
+  --tint-4: #c4d7f3;
+  --blob: var(--tint-3);
 
-  --ink: #1a1640;
-  --ink-soft: #5c5882;
-  --ink-muted: #6a678e;
+  --ink: #141b26;
+  --ink-soft: #5b6678;
+  --ink-muted: #6b778a;
 
-  --primary: #5a52e0;
-  --primary-deep: #3d35c9;
-  --primary-soft: #7b74f5;
-  --primary-ink: #4a42d0;
+  --primary: #0e3264;
+  --primary-deep: #0a244a;
+  --primary-soft: #164585;
+  --primary-ink: #0e3264;
+  --focus: #2f6bc4;
 
-  --accent: #e84d6f;
-  --accent-ink: #c93a66;
-  --gold: #e09b10;
-  --gold-ink: #9a6500;
-  --success: #00a87a;
-  --success-ink: #00805e;
-  --warning: #e8861e;
-  --warning-ink: #b45f06;
-  --danger: #e03055;
-  --danger-ink: #d12b4f;
+  /* The design has no second brand colour, so accent and gold reuse the navy family. */
+  --accent: #164585;
+  --accent-ink: #164585;
+  --gold: #164585;
+  --gold-ink: #0e3264;
+  --success: #137a50;
+  --success-ink: #137a50;
+  --warning: #b26a00;
+  --warning-ink: #8a5200;
+  --danger: #b42318;
+  --danger-ink: #b42318;
 }
 
-:root[data-theme="dark"] {
-  color-scheme: dark;
 
-  --canvas: #0f0e1a;
-  --surface: #1a1828;
-  --raised: #242236;
-  --card: #1e1c2e;
-  --line: #2a2840;
-
-  --ink: #f0eeff;
-  --ink-soft: #9b98b8;
-  --ink-muted: #928fb6;
-
-  --primary: #6c63ff;
-  --primary-deep: #3d35c9;
-  --primary-soft: #9c95ff;
-  --primary-ink: #9c95ff;
-
-  --accent: #ff6584;
-  --accent-ink: #ff6584;
-  --gold: #ffb830;
-  --gold-ink: #ffb830;
-  --success: #00c896;
-  --success-ink: #00c896;
-  --warning: #ff9f43;
-  --warning-ink: #ff9f43;
-  --danger: #ff5e7d;
-  --danger-ink: #ff5e7d;
-}
 
 @theme inline {
   --font-sans: "Figtree Variable", ui-sans-serif, system-ui, sans-serif;
@@ -77,6 +57,8 @@
   --color-raised: var(--raised);
   --color-card: var(--card);
   --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-wash: var(--wash);
 
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
@@ -126,19 +108,19 @@
 /* enough for AA contrast in both themes (gold uses dark text instead). */
 /* ------------------------------------------------------------------ */
 @utility bg-grad-primary {
-  background-image: linear-gradient(135deg, #5f57f0, #3d35c9);
+  background-color: var(--primary);
 }
 @utility bg-grad-accent {
-  background-image: linear-gradient(135deg, #d63a63, #c9482f);
+  background-color: var(--accent);
 }
 @utility bg-grad-success {
-  background-image: linear-gradient(135deg, #00805e, #00778f);
+  background-color: var(--success);
 }
 @utility bg-grad-danger {
-  background-image: linear-gradient(135deg, #d12b4f, #c23a2a);
+  background-color: var(--danger);
 }
 @utility bg-grad-gold {
-  background-image: linear-gradient(135deg, #ffb830, #ff9a3c);
+  background-color: var(--gold);
 }
 
 /* Soft glows used behind hero screens (splash, onboarding, login). */

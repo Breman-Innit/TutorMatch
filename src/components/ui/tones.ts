@@ -18,9 +18,9 @@ export const softTone: Record<Tone, string> = {
 export const filledTone: Record<Tone, string> = {
   primary: "bg-grad-primary text-white",
   accent: "bg-grad-accent text-white",
-  gold: "bg-grad-gold text-[#2b1a00]",
+  gold: "bg-grad-gold text-white",
   success: "bg-grad-success text-white",
-  warning: "bg-grad-gold text-[#2b1a00]",
+  warning: "bg-warning-ink text-white",
   danger: "bg-grad-danger text-white",
 };
 
