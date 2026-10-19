@@ -50,7 +50,7 @@
 
 @theme inline {
   --font-sans: "Figtree Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Bricolage Grotesque Variable", "Figtree Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Figtree Variable", ui-sans-serif, system-ui, sans-serif;
 
   --color-canvas: var(--canvas);
   --color-surface: var(--surface);
