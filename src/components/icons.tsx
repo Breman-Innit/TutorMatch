@@ -222,6 +222,13 @@ export const IconGlobe = (p: IconProps) => (
   </Svg>
 );
 
+export const IconClock = (p: IconProps) => (
+  <Svg {...p}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 7v5l3 2" />
+  </Svg>
+);
+
 /** Every icon by name, used by the component gallery. */
 export const ICON_SET: Record<string, IconComponent> = {
   Home: IconHome,

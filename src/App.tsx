@@ -5,6 +5,7 @@ import Onboarding from "@/pages/Onboarding";
 import Login from "@/pages/Login";
 import Signup from "@/pages/Signup";
 import Home from "@/pages/Home";
+import TutorProfile from "@/pages/TutorProfile";
 import { AppShell } from "@/components/layout/AppShell";
 import ComponentGallery from "@/pages/ComponentGallery";
 import { ThemeProvider } from "@/theme/ThemeProvider";
@@ -27,7 +28,7 @@ export default function App() {
 
             <Route element={<AppShell />}>
               <Route path={ROUTES.home} element={<Home />} />
-            <Route path={ROUTES.tutor()} element={<Placeholder title="Tutor profile" />} />
+            <Route path={ROUTES.tutor()} element={<TutorProfile />} />
             <Route path={ROUTES.tutorReviews()} element={<Placeholder title="Tutor reviews" />} />
             <Route path={ROUTES.book()} element={<Placeholder title="Book a session" />} />
 
