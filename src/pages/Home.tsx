@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { IconClose, IconSearch } from "@/components/icons";
 import { TextField } from "@/components/ui";
+import { TutorCard } from "@/components/TutorCard";
 import { TUTORS } from "@/data/tutors";
 
 function greeting(now = new Date()) {
@@ -63,13 +64,10 @@ export default function Home() {
           <p className="mt-1 text-sm text-ink-muted">Try a different search.</p>
         </div>
       ) : (
-        <ul className="flex flex-col gap-3">
+        <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {tutors.map((t) => (
-            <li key={t.id} className="rounded-card border border-line p-4">
-              <p className="font-semibold">{t.name}</p>
-              <p className="text-sm text-ink-soft">
-                {t.role} · {t.subjects.join(", ")}
-              </p>
+            <li key={t.id}>
+              <TutorCard tutor={t} />
             </li>
           ))}
         </ul>
