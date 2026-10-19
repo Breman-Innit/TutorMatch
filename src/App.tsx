@@ -5,7 +5,7 @@ import Onboarding from "@/pages/Onboarding";
 import ComponentGallery from "@/pages/ComponentGallery";
 import { ThemeProvider } from "@/theme/ThemeProvider";
 import { ToastProvider } from "@/components/ui";
-import { BottomNav } from "@/components/layout/BottomNav";
+
 
 /**
  * Route table. Each placeholder is replaced by a real page in later milestones.
@@ -43,7 +43,7 @@ export default function App() {
             <Route path={ROUTES.gallery} element={<ComponentGallery />} />
             <Route path="*" element={<Navigate to={ROUTES.home} replace />} />
           </Routes>
-          <BottomNav badges={{ chats: 2, notifications: 5 }} />
+      
         </BrowserRouter>
       </ToastProvider>
     </ThemeProvider>
