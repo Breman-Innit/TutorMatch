@@ -59,6 +59,7 @@
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
   --color-wash: var(--wash);
+  --color-focus: var(--focus);
 
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);

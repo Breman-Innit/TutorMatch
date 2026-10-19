@@ -5,11 +5,11 @@ import { cn } from "@/lib/cn";
 /* ---------- shared pieces ---------- */
 
 const controlBase =
-  "w-full rounded-field border bg-surface text-[15px] text-ink transition outline-none " +
-  "placeholder:text-ink-muted focus:bg-raised disabled:cursor-not-allowed disabled:opacity-60";
+  "w-full rounded-field border-[1.5px] bg-surface text-base text-ink transition outline-none " +
+  "placeholder:text-ink-muted focus:ring-4 focus:ring-focus/18 disabled:cursor-not-allowed disabled:opacity-60";
 
 const controlBorder = (error?: string) =>
-  error ? "border-danger focus:border-danger" : "border-line focus:border-primary";
+  error ? "border-danger focus:border-danger" : "border-line-strong hover:border-ink-muted focus:border-primary";
 
 interface FieldFrameProps {
   id: string;
@@ -23,7 +23,7 @@ interface FieldFrameProps {
 function FieldFrame({ id, label, hint, error, children }: FieldFrameProps) {
   return (
     <div className="flex w-full flex-col gap-1.5">
-      <label htmlFor={id} className="text-[13px] font-semibold text-ink-soft">
+      <label htmlFor={id} className="text-sm font-semibold text-ink">
         {label}
       </label>
       {children}
