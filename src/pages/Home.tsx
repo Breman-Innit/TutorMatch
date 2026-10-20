@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { IconClose, IconSearch } from "@/components/icons";
 import { Chip, TextField } from "@/components/ui";
-import { HeroSlider } from "@/components/HeroSlider";
+import { HomeHero } from "@/components/HomeHero";
 import { TutorCard } from "@/components/TutorCard";
 import { FACULTIES } from "@/data/faculties";
 import { TUTORS } from "@/data/tutors";
@@ -38,19 +38,21 @@ export default function Home() {
   }, [query, type, faculty]);
 
   return (
-    <main className="mx-auto w-full max-w-5xl px-5 py-8 sm:px-8">
-      <header className="mb-6">
-        <p className="text-sm text-ink-soft">{greeting()}</p>
-        <h1 className="font-serif text-5xl leading-[0.95] font-normal tracking-tight sm:text-6xl">Find your tutor</h1>
-      </header>
-
-      <HeroSlider
+    <main>
+      <HomeHero
         onBrowse={() => {
           const search = document.getElementById("tutor-search");
           search?.scrollIntoView({ behavior: "smooth", block: "center" });
           search?.focus({ preventScroll: true });
         }}
       />
+
+      <div className="mx-auto w-full max-w-5xl px-5 py-8 sm:px-8">
+      <header className="mb-6">
+        <p className="text-sm text-ink-soft">{greeting()}</p>
+        <h2 className="font-serif text-4xl leading-none font-normal tracking-tight sm:text-5xl">Meet your tutors</h2>
+      </header>
+
 
       <TextField
         id="tutor-search"
@@ -115,6 +117,7 @@ export default function Home() {
           ))}
         </ul>
       )}
+    </div>
     </main>
   );
 }
