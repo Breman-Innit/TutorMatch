@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { IconClose, IconSearch } from "@/components/icons";
 import { Chip, TextField } from "@/components/ui";
+import { HeroSlider } from "@/components/HeroSlider";
 import { TutorCard } from "@/components/TutorCard";
 import { FACULTIES } from "@/data/faculties";
 import { TUTORS } from "@/data/tutors";
@@ -43,7 +44,24 @@ export default function Home() {
         <h1 className="text-[1.75rem] leading-tight font-bold sm:text-3xl">Find your tutor</h1>
       </header>
 
+      <HeroSlider
+        onBrowse={() => {
+          const search = document.getElementById("tutor-search");
+          search?.scrollIntoView({ behavior: "smooth", block: "center" });
+          search?.focus({ preventScroll: true });
+        }}
+      />
+
+      <HeroSlider
+        onBrowse={() => {
+          const search = document.getElementById("tutor-search");
+          search?.scrollIntoView({ behavior: "smooth", block: "center" });
+          search?.focus({ preventScroll: true });
+        }}
+      />
+
       <TextField
+        id="tutor-search"
         label="Search tutors"
         type="search"
         placeholder="Search by name, course or faculty"

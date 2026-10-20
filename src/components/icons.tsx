@@ -229,6 +229,17 @@ export const IconClock = (p: IconProps) => (
   </Svg>
 );
 
+export const IconPause = (p: IconProps) => (
+  <Svg strokeWidth={3} {...p}>
+    <path d="M8.5 5.5v13M15.5 5.5v13" />
+  </Svg>
+);
+export const IconPlay = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M8 5.5l11 6.5-11 6.5z" />
+  </Svg>
+);
+
 /** Every icon by name, used by the component gallery. */
 export const ICON_SET: Record<string, IconComponent> = {
   Home: IconHome,
