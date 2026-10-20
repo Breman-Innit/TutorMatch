@@ -7,6 +7,7 @@ import Signup from "@/pages/Signup";
 import Home from "@/pages/Home";
 import TutorProfile from "@/pages/TutorProfile";
 import TutorReviews from "@/pages/TutorReviews";
+import Booking from "@/pages/Booking";
 import { AppShell } from "@/components/layout/AppShell";
 import ComponentGallery from "@/pages/ComponentGallery";
 import { ThemeProvider } from "@/theme/ThemeProvider";
@@ -31,7 +32,7 @@ export default function App() {
               <Route path={ROUTES.home} element={<Home />} />
             <Route path={ROUTES.tutor()} element={<TutorProfile />} />
             <Route path={ROUTES.tutorReviews()} element={<TutorReviews />} />
-            <Route path={ROUTES.book()} element={<Placeholder title="Book a session" />} />
+            <Route path={ROUTES.book()} element={<Booking />} />
 
             <Route path={ROUTES.bookings} element={<Placeholder title="My bookings" />} />
             <Route path={ROUTES.chats} element={<Placeholder title="Messages" />} />

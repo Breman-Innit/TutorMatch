@@ -3,6 +3,7 @@ export { Badge } from "./Badge";
 export { Button, type ButtonProps } from "./Button";
 export { Card } from "./Card";
 export { Chip } from "./Chip";
+export { ChoiceCard } from "./ChoiceCard";
 export { PasswordField, Select, TextArea, TextField } from "./Field";
 export { IconButton } from "./IconButton";
 export { IconTile } from "./IconTile";
