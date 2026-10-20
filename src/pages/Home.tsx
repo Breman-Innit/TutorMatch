@@ -41,16 +41,8 @@ export default function Home() {
     <main className="mx-auto w-full max-w-5xl px-5 py-8 sm:px-8">
       <header className="mb-6">
         <p className="text-sm text-ink-soft">{greeting()}</p>
-        <h1 className="text-[1.75rem] leading-tight font-bold sm:text-3xl">Find your tutor</h1>
+        <h1 className="font-serif text-5xl leading-[0.95] font-normal tracking-tight sm:text-6xl">Find your tutor</h1>
       </header>
-
-      <HeroSlider
-        onBrowse={() => {
-          const search = document.getElementById("tutor-search");
-          search?.scrollIntoView({ behavior: "smooth", block: "center" });
-          search?.focus({ preventScroll: true });
-        }}
-      />
 
       <HeroSlider
         onBrowse={() => {
