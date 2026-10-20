@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { IconClose, IconSearch } from "@/components/icons";
 import { Chip, TextField } from "@/components/ui";
 import { HomeHero } from "@/components/HomeHero";
+import { HowItWorks } from "@/components/HowItWorks";
 import { TutorCard } from "@/components/TutorCard";
 import { FACULTIES } from "@/data/faculties";
 import { TUTORS } from "@/data/tutors";
@@ -46,6 +47,8 @@ export default function Home() {
           search?.focus({ preventScroll: true });
         }}
       />
+
+      <HowItWorks />
 
       <div className="mx-auto w-full max-w-5xl px-5 py-8 sm:px-8">
       <header className="mb-6">
