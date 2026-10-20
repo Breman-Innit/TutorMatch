@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router";
 import { IconBack, IconBook, IconGlobe, IconPin } from "@/components/icons";
-import { Avatar, Button, Card, ChoiceCard, TextArea, useToast } from "@/components/ui";
+import { Calendar } from "@/components/Calendar";
+import { Avatar, Button, Card, Chip, ChoiceCard, TextArea, useToast } from "@/components/ui";
 import { TUTORS } from "@/data/tutors";
 import { ROUTES } from "@/routes";
 
 type Location = "campus" | "online";
+
+const TIMES = ["9:00 AM", "10:00 AM", "11:00 AM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM"];
+const formatDate = (d: Date) => d.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short" });
 
 export default function Booking() {
   const { id } = useParams();
@@ -14,6 +18,8 @@ export default function Booking() {
 
   const [course, setCourse] = useState(tutor?.subjects[0] ?? "");
   const [location, setLocation] = useState<Location>(tutor?.isCampusTutor ? "campus" : "online");
+  const [date, setDate] = useState<Date | null>(null);
+  const [time, setTime] = useState<string | null>(null);
   const [notes, setNotes] = useState("");
 
   if (!tutor) {
@@ -89,6 +95,26 @@ export default function Booking() {
             </div>
           </fieldset>
 
+          <fieldset className={groupClass}>
+            <legend className={legendClass}>Select date</legend>
+            <div className="clear-both">
+              <Calendar selected={date} onSelect={setDate} />
+            </div>
+          </fieldset>
+
+          {date && (
+            <fieldset className={groupClass}>
+              <legend className={legendClass}>Select time</legend>
+              <div className="clear-both flex flex-wrap gap-2">
+                {TIMES.map((t) => (
+                  <Chip key={t} selected={time === t} onClick={() => setTime(t)}>
+                    {t}
+                  </Chip>
+                ))}
+              </div>
+            </fieldset>
+          )}
+
           <Card className="p-5">
             <TextArea
               label="Notes (optional)"
@@ -120,7 +146,9 @@ export default function Booking() {
             </div>
             <div className="flex justify-between gap-4">
               <dt className="text-ink-soft">Date and time</dt>
-              <dd className="text-right text-ink-muted">Not chosen yet</dd>
+              <dd className={date && time ? "text-right font-semibold" : "text-right text-ink-muted"}>
+                {date && time ? `${formatDate(date)}, ${time}` : "Not chosen yet"}
+              </dd>
             </div>
           </dl>
 
@@ -129,9 +157,10 @@ export default function Booking() {
             <span className="text-2xl font-bold text-primary">₵{tutor.studentRate}</span>
           </div>
 
-          <Button fullWidth onClick={() => toast.info("Date, time and payment come in the next steps.")}>
+          <Button fullWidth disabled={!date || !time} onClick={() => toast.info("Payment comes in the next step.")}>
             Continue to payment
           </Button>
+        {(!date || !time) && <p className="mt-3 text-center text-xs text-ink-muted">Choose a date and time to continue.</p>}
         </aside>
       </div>
     </main>
