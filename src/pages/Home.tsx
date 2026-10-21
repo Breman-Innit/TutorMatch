@@ -1,12 +1,16 @@
 import { useMemo, useState } from "react";
+import { useAuth } from "@/auth/AuthProvider";
 import { IconClose, IconSearch } from "@/components/icons";
-import { Chip, TextField } from "@/components/ui";
-import { HomeHero } from "@/components/HomeHero";
-import { HowItWorks } from "@/components/HowItWorks";
 import { TutorCard } from "@/components/TutorCard";
-import { TutorCta } from "@/components/TutorCta";
+import { Chip, TextField } from "@/components/ui";
 import { FACULTIES } from "@/data/faculties";
 import { TUTORS } from "@/data/tutors";
+
+const TYPES = ["All", "Student Tutors", "Staff Tutors"] as const;
+type TypeFilter = (typeof TYPES)[number];
+
+/** "Faculty of Law" -> "Law", "Faculty of Business Administration (FBA)" -> "FBA". */
+const shortFaculty = (name: string) => name.match(/\(([^)]+)\)/)?.[1] ?? name.replace(/^Faculty of /, "");
 
 function greeting(now = new Date()) {
   const hour = now.getHours();
@@ -16,13 +20,11 @@ function greeting(now = new Date()) {
   return "Good night";
 }
 
-const TYPES = ["All", "Student Tutors", "Staff Tutors"] as const;
-type TypeFilter = (typeof TYPES)[number];
-
-/** "Faculty of Law" -> "Law", "Faculty of Business Administration (FBA)" -> "FBA". */
-const shortFaculty = (name: string) => name.match(/\(([^)]+)\)/)?.[1] ?? name.replace(/^Faculty of /, "");
-
+/** The first page a signed-in student sees: every tutor, with search and filters. */
 export default function Home() {
+  const { user } = useAuth();
+  const firstName = user?.name.split(" ")[0];
+
   const [query, setQuery] = useState("");
   const [type, setType] = useState<TypeFilter>("All");
   const [faculty, setFaculty] = useState("All");
@@ -40,26 +42,19 @@ export default function Home() {
   }, [query, type, faculty]);
 
   return (
-    <main>
-      <HomeHero
-        onBrowse={() => {
-          const search = document.getElementById("tutor-search");
-          search?.scrollIntoView({ behavior: "smooth", block: "center" });
-          search?.focus({ preventScroll: true });
-        }}
-      />
-
-      <HowItWorks />
-
-      <div className="mx-auto w-full max-w-5xl px-5 py-8 sm:px-8">
-      <header className="mb-6">
-        <p className="text-sm text-ink-soft">{greeting()}</p>
-        <h2 className="font-serif text-4xl leading-none font-normal tracking-tight sm:text-5xl">Meet your tutors</h2>
+    <main className="mx-auto w-full max-w-5xl px-5 py-8 sm:px-8 md:py-12">
+      <header className="mb-8">
+        <p className="text-sm font-semibold text-ink-soft">
+          {greeting()}
+          {firstName ? `, ${firstName}` : ""}
+        </p>
+        <h1 className="mt-1 font-serif text-5xl leading-[0.95] font-normal tracking-tight sm:text-6xl">Find your tutor</h1>
+        <p className="mt-3 max-w-xl text-ink-soft">
+          {TUTORS.length} verified tutors across {FACULTIES.length} faculties, ready to help with your courses.
+        </p>
       </header>
 
-
       <TextField
-        id="tutor-search"
         label="Search tutors"
         type="search"
         placeholder="Search by name, course or faculty"
@@ -121,8 +116,6 @@ export default function Home() {
           ))}
         </ul>
       )}
-    </div>
-    <TutorCta />
     </main>
   );
 }
