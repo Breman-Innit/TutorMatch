@@ -139,7 +139,7 @@ export function HomeHero({ onBrowse }: { onBrowse: () => void }) {
       onBlurCapture={() => setHolding(false)}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
-      className="relative isolate h-[38rem] overflow-hidden bg-primary-deep text-white md:h-[42rem] lg:h-[46rem]"
+      className="relative isolate h-svh max-h-[64rem] min-h-[36rem] overflow-hidden bg-primary-deep text-white"
     >
       <div className="hero-media absolute inset-0">
         <div className="hero-parallax absolute inset-x-0 -inset-y-[8%]">
@@ -167,7 +167,7 @@ export function HomeHero({ onBrowse }: { onBrowse: () => void }) {
         />
       </div>
 
-      <div className="relative z-10 flex h-full flex-col px-6 pt-8 pb-7 md:px-12 md:pt-12 md:pb-9 lg:px-16">
+      <div className="relative z-10 mx-auto flex h-full w-full max-w-6xl flex-col px-5 pt-24 pb-7 sm:px-8 md:pt-28 md:pb-9">
         <p className="hero-fade text-xs font-semibold tracking-[0.18em] text-white/80 uppercase">
           {TUTORS.length} verified tutors · {FACULTIES.length} faculties
         </p>

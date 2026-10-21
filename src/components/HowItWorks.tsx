@@ -56,7 +56,7 @@ export function HowItWorks() {
   );
 
   return (
-    <section ref={root} aria-labelledby="hiw-heading" className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 md:py-28">
+    <section ref={root} id="how-it-works" aria-labelledby="hiw-heading" className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 md:py-28">
       <div className="grid gap-x-16 gap-y-12 md:grid-cols-12">
         <div className="hiw-title md:col-span-7 md:col-start-6 md:row-start-1">
           <p className="mb-5 text-xs font-semibold tracking-[0.18em] text-ink-soft uppercase">How it works</p>

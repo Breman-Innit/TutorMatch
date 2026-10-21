@@ -5,6 +5,7 @@ import Onboarding from "@/pages/Onboarding";
 import Login from "@/pages/Login";
 import Signup from "@/pages/Signup";
 import Home from "@/pages/Home";
+import Landing from "@/pages/Landing";
 import TutorProfile from "@/pages/TutorProfile";
 import TutorReviews from "@/pages/TutorReviews";
 import Booking from "@/pages/Booking";
@@ -26,7 +27,7 @@ export default function App() {
 <AuthProvider>
         <BrowserRouter>
           <Routes>
-            <Route path={ROUTES.welcome} element={<Onboarding />} />
+            <Route path={ROUTES.landing} element={<Landing />} />
             <Route path={ROUTES.login} element={<Login />} />
             <Route path={ROUTES.signup} element={<Signup />} />
 
