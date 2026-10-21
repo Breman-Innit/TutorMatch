@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router";
 import { IconAlert, IconUser } from "@/components/icons";
+import { useAuth } from "@/auth/AuthProvider";
 import { AuthLayout } from "@/components/layout/AuthLayout";
 import { Button, PasswordField, Select, TextField, useToast } from "@/components/ui";
 import { BRAND } from "@/config/brand";
@@ -38,6 +39,7 @@ function validate(v: Values): Errors {
 export default function Signup() {
   const navigate = useNavigate();
   const toast = useToast();
+  const { signUp } = useAuth();
   const [values, setValues] = useState<Values>({ name: "", facultyId: "", programId: "", year: "", email: "", password: "" });
   const [errors, setErrors] = useState<Errors>({});
   const [formError, setFormError] = useState("");
@@ -74,6 +76,13 @@ export default function Signup() {
         setFormError("An account with this email already exists. Try signing in instead.");
         return;
       }
+      signUp({
+        name: values.name,
+        email: values.email,
+        facultyId: values.facultyId,
+        programId: values.programId,
+        year: Number(values.year),
+      });
       toast.success(`Account created. Welcome to ${BRAND.name}!`);
       navigate(ROUTES.home);
     }, 1000);

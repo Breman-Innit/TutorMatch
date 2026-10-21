@@ -10,6 +10,7 @@ import TutorReviews from "@/pages/TutorReviews";
 import Booking from "@/pages/Booking";
 import { AppShell } from "@/components/layout/AppShell";
 import ComponentGallery from "@/pages/ComponentGallery";
+import { AuthProvider } from "@/auth/AuthProvider";
 import { ThemeProvider } from "@/theme/ThemeProvider";
 import { ToastProvider } from "@/components/ui";
 
@@ -22,6 +23,7 @@ export default function App() {
   return (
     <ThemeProvider>
       <ToastProvider>
+<AuthProvider>
         <BrowserRouter>
           <Routes>
             <Route path={ROUTES.welcome} element={<Onboarding />} />
@@ -54,7 +56,8 @@ export default function App() {
           </Routes>
       
         </BrowserRouter>
-      </ToastProvider>
+      </AuthProvider>
+</ToastProvider>
     </ThemeProvider>
   );
 }

@@ -1,6 +1,8 @@
 import { useState, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router";
 import { IconAlert, IconLock } from "@/components/icons";
+import { useAuth } from "@/auth/AuthProvider";
+import { useAuth } from "@/auth/AuthProvider";
 import { AuthLayout } from "@/components/layout/AuthLayout";
 import { Button, PasswordField, TextField, useToast } from "@/components/ui";
 import { ROUTES } from "@/routes";
@@ -49,7 +51,8 @@ export default function Login() {
         setFormError("That email and password don't match. Check them and try again.");
         return;
       }
-      navigate(ROUTES.home);
+      signIn(email);
+navigate(ROUTES.home);
     }, 900);
   };
 
