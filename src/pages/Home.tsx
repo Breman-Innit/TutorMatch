@@ -4,6 +4,7 @@ import { Chip, TextField } from "@/components/ui";
 import { HomeHero } from "@/components/HomeHero";
 import { HowItWorks } from "@/components/HowItWorks";
 import { TutorCard } from "@/components/TutorCard";
+import { TutorCta } from "@/components/TutorCta";
 import { FACULTIES } from "@/data/faculties";
 import { TUTORS } from "@/data/tutors";
 
@@ -121,6 +122,7 @@ export default function Home() {
         </ul>
       )}
     </div>
+    <TutorCta />
     </main>
   );
 }
