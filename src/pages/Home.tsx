@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react";
+import { useAuth } from "@/auth/AuthProvider";
 import { TutorCard } from "@/components/TutorCard";
+import { TutorRow } from "@/components/TutorRow";
 import { WelcomeBand } from "@/components/WelcomeBand";
 import { Chip } from "@/components/ui";
 import { FACULTIES } from "@/data/faculties";
@@ -14,6 +16,11 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const [type, setType] = useState<TypeFilter>("All");
   const [faculty, setFaculty] = useState("All");
+
+  const { user } = useAuth();
+  const ownFaculty = FACULTIES.find((f) => f.id === user?.facultyId);
+  const recommended = ownFaculty ? TUTORS.filter((t) => t.faculty === ownFaculty.name).slice(0, 6) : [];
+  const topRated = [...TUTORS].sort((a, b) => b.rating - a.rating || b.reviewCount - a.reviewCount).slice(0, 4);
 
   const tutors = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -52,8 +59,21 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mt-8 mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-bold">Available tutors</h2>
+        {!query.trim() && type === "All" && faculty === "All" && (
+          <div className="mt-10 flex flex-col gap-12">
+            {ownFaculty && recommended.length > 0 && (
+              <TutorRow
+                title={`Recommended for ${shortFaculty(ownFaculty.name)}`}
+                subtitle="Tutors from your own faculty"
+                tutors={recommended}
+              />
+            )}
+            <TutorRow title="Top rated on campus" subtitle="The highest-rated tutors, by student reviews" tutors={topRated} />
+          </div>
+        )}
+
+        <div className="mt-10 mb-4 flex items-center justify-between">
+          <h2 className="font-serif text-3xl leading-none font-normal tracking-tight md:text-4xl">All tutors</h2>
           <span className="rounded-full bg-raised px-3 py-1 text-xs font-semibold text-primary-ink">
             {tutors.length} found
           </span>
