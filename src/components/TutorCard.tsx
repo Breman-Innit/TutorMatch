@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router";
 import { IconCalendar, IconGlobe, IconPin } from "@/components/icons";
 import { Avatar, Button, Card, StarRating } from "@/components/ui";
+import { facultyStyle } from "@/lib/facultyStyle";
 import { ROUTES } from "@/routes";
 import type { Tutor } from "@/types";
 
@@ -8,6 +9,7 @@ import type { Tutor } from "@/types";
 export function TutorCard({ tutor }: { tutor: Tutor }) {
   const navigate = useNavigate();
   const isStaff = tutor.role === "Staff Tutor";
+  const tone = facultyStyle(tutor.faculty);
 
   return (
     <Card className="relative flex h-full flex-col gap-3 p-4 transition-colors hover:border-primary/40">
@@ -31,7 +33,10 @@ export function TutorCard({ tutor }: { tutor: Tutor }) {
               {isStaff ? "Staff" : "Student"}
             </span>
           </div>
-          <p className="truncate text-xs text-ink-soft">{tutor.faculty}</p>
+          <p className="flex items-center gap-1.5 text-xs text-ink-soft">
+            <span aria-hidden="true" className={`size-2 shrink-0 rounded-full ${tone.dot}`} />
+            <span className="truncate">{tutor.faculty}</span>
+          </p>
           <div className="mt-1.5 flex items-center gap-1.5">
             <StarRating rating={tutor.rating} size={13} />
             <span className="text-xs font-bold">{tutor.rating.toFixed(1)}</span>
@@ -48,7 +53,7 @@ export function TutorCard({ tutor }: { tutor: Tutor }) {
       <div className="flex items-center justify-between gap-3 border-t border-line pt-3">
         <ul className="flex flex-wrap gap-1.5">
           {tutor.subjects.slice(0, 3).map((subject) => (
-            <li key={subject} className="rounded-full bg-raised px-2.5 py-1 text-[11px] font-semibold text-primary-ink">
+            <li key={subject} className={`rounded-full px-2.5 py-1 text-[11px] font-semibold ${tone.chip}`}>
               {subject}
             </li>
           ))}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Star } from "lucide-react";
+import { IconStar as Star } from "@/components/icons";
 import { cn } from "@/lib/cn";
 
 interface StarRatingProps {
@@ -18,7 +18,7 @@ export function StarRating({ rating, size = 14, className }: StarRatingProps) {
           key={i}
           size={size}
           strokeWidth={2}
-          className="text-gold"
+          className="text-star"
           fill={i < filled ? "currentColor" : "none"}
           aria-hidden="true"
         />
@@ -54,7 +54,7 @@ export function StarRatingInput({ value, onChange, size = 38, label = "Rating" }
           <Star
             size={size}
             strokeWidth={1.8}
-            className="text-gold transition-transform"
+            className="text-star transition-transform"
             fill={n <= shown ? "currentColor" : "none"}
             aria-hidden="true"
           />

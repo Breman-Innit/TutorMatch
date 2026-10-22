@@ -44,6 +44,13 @@
   --warning-ink: #8a5200;
   --danger: #b42318;
   --danger-ink: #b42318;
+
+  /* Warm accents: amber for ratings, one colour per faculty. */
+  --star: #f0a500;
+  --fba: #1f5fbf;
+  --fesac: #0f766e;
+  --fhas: #9d174d;
+  --law: #92400e;
 }
 
 
@@ -81,6 +88,11 @@
   --color-warning-ink: var(--warning-ink);
   --color-danger: var(--danger);
   --color-danger-ink: var(--danger-ink);
+  --color-star: var(--star);
+  --color-fba: var(--fba);
+  --color-fesac: var(--fesac);
+  --color-fhas: var(--fhas);
+  --color-law: var(--law);
 
   /* Radii from the Autolyn design: cards 16, fields 12, icon tiles 14. Pills use rounded-full. */
   	--radius-card: 16px;
