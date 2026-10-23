@@ -7,10 +7,10 @@ import { ROUTES } from "@/routes";
 import type { Tutor } from "@/types";
 
 /** A tutor counts as "top rated" with a high average backed by a meaningful number of reviews. */
-const isTopRated = (t: Tutor) => t.rating >= 4.8 && t.reviewCount >= 20;
+export const isTopRated = (t: Tutor) => t.rating >= 4.8 && t.reviewCount >= 20;
 
 /** Portrait from public/images/tutors/<id>.jpg, with a tinted initials block when there is no photo yet. */
-function Portrait({ tutor }: { tutor: Tutor }) {
+export function Portrait({ tutor }: { tutor: Tutor }) {
   const [failed, setFailed] = useState(false);
   const tone = facultyStyle(tutor.faculty);
 
