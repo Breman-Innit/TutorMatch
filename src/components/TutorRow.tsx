@@ -22,7 +22,7 @@ export function TutorRow({ title, subtitle, tutors }: TutorRowProps) {
     <section aria-labelledby={headingId}>
       <div className="mb-4 flex items-end justify-between gap-4">
         <div>
-          <h2 id={headingId} className="font-serif text-3xl leading-none font-normal tracking-tight md:text-4xl">
+          <h2 id={headingId} data-reveal className="font-serif text-3xl leading-none font-normal tracking-tight md:text-4xl">
             {title}
           </h2>
           <p className="mt-2 text-sm text-ink-soft">{subtitle}</p>
@@ -42,7 +42,7 @@ export function TutorRow({ title, subtitle, tutors }: TutorRowProps) {
         className="-mx-5 flex snap-x snap-mandatory scroll-pl-5 gap-4 overflow-x-auto px-5 pb-2 sm:-mx-8 sm:scroll-pl-8 sm:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {tutors.map((tutor) => (
-          <li key={tutor.id} className="w-[min(22.5rem,85vw)] shrink-0 snap-start">
+          <li key={tutor.id} data-reveal className="w-[min(22.5rem,85vw)] shrink-0 snap-start">
             <TutorCard tutor={tutor} />
           </li>
         ))}

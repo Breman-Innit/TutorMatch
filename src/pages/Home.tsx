@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useAuth } from "@/auth/AuthProvider";
 import { TutorCard } from "@/components/TutorCard";
 import { TutorRow } from "@/components/TutorRow";
@@ -7,6 +7,7 @@ import { Chip } from "@/components/ui";
 import { FACULTIES } from "@/data/faculties";
 import { TUTORS } from "@/data/tutors";
 import { shortFaculty } from "@/lib/faculty";
+import { useReveal } from "@/lib/reveal";
 
 const TYPES = ["All", "Student Tutors", "Staff Tutors"] as const;
 type TypeFilter = (typeof TYPES)[number];
@@ -34,8 +35,12 @@ export default function Home() {
     });
   }, [query, type, faculty]);
 
+  const browsing = !query.trim() && type === "All" && faculty === "All";
+  const page = useRef<HTMLElement>(null);
+  useReveal(page, [tutors.map((t) => t.id).join(","), browsing]);
+
   return (
-    <main>
+    <main ref={page}>
       <WelcomeBand query={query} onQueryChange={setQuery} />
 
       <div className="mx-auto w-full max-w-5xl px-5 py-8 sm:px-8 md:py-10">
@@ -59,7 +64,7 @@ export default function Home() {
           </div>
         </div>
 
-        {!query.trim() && type === "All" && faculty === "All" && (
+        {browsing && (
           <div className="mt-10 flex flex-col gap-12">
             {ownFaculty && recommended.length > 0 && (
               <TutorRow
@@ -87,7 +92,7 @@ export default function Home() {
         ) : (
           <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {tutors.map((t) => (
-              <li key={t.id}>
+              <li key={t.id} data-reveal>
                 <TutorCard tutor={t} />
               </li>
             ))}
