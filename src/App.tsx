@@ -1,7 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { ROUTES } from "@/routes";
 import Placeholder from "@/pages/Placeholder";
-import Onboarding from "@/pages/Onboarding";
 import Login from "@/pages/Login";
 import Signup from "@/pages/Signup";
 import Home from "@/pages/Home";
@@ -9,9 +8,11 @@ import Landing from "@/pages/Landing";
 import TutorProfile from "@/pages/TutorProfile";
 import TutorReviews from "@/pages/TutorReviews";
 import Booking from "@/pages/Booking";
+import Bookings from "@/pages/Bookings";
 import { AppShell } from "@/components/layout/AppShell";
 import ComponentGallery from "@/pages/ComponentGallery";
 import { AuthProvider } from "@/auth/AuthProvider";
+import { BookingsProvider } from "@/bookings/BookingsProvider";
 import { ThemeProvider } from "@/theme/ThemeProvider";
 import { ToastProvider } from "@/components/ui";
 
@@ -25,6 +26,7 @@ export default function App() {
     <ThemeProvider>
       <ToastProvider>
 <AuthProvider>
+<BookingsProvider>
         <BrowserRouter>
           <Routes>
             <Route path={ROUTES.landing} element={<Landing />} />
@@ -37,7 +39,7 @@ export default function App() {
             <Route path={ROUTES.tutorReviews()} element={<TutorReviews />} />
             <Route path={ROUTES.book()} element={<Booking />} />
 
-            <Route path={ROUTES.bookings} element={<Placeholder title="My bookings" />} />
+            <Route path={ROUTES.bookings} element={<Bookings />} />
             <Route path={ROUTES.chats} element={<Placeholder title="Messages" />} />
             <Route path={ROUTES.chat()} element={<Placeholder title="Conversation" />} />
             <Route path={ROUTES.notifications} element={<Placeholder title="Notifications" />} />
@@ -57,7 +59,8 @@ export default function App() {
           </Routes>
       
         </BrowserRouter>
-      </AuthProvider>
+      </BookingsProvider>
+</AuthProvider>
 </ToastProvider>
     </ThemeProvider>
   );
