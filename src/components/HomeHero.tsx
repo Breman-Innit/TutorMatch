@@ -41,7 +41,6 @@ export function HomeHero({ onBrowse }: { onBrowse: () => void }) {
 
   const [index, setIndex] = useState(0);
   const [userPaused, setUserPaused] = useState(false);
-  const [holding, setHolding] = useState(false);
   const [reduceMotion] = useState(prefersReducedMotion);
 
   const go = (i: number) => setIndex((i + SLIDES.length) % SLIDES.length);
@@ -114,8 +113,8 @@ export function HomeHero({ onBrowse }: { onBrowse: () => void }) {
   }, [index, reduceMotion]);
 
   useEffect(() => {
-    timer.current?.paused(userPaused || holding);
-  }, [userPaused, holding, index]);
+    timer.current?.paused(userPaused);
+  }, [userPaused, index]);
 
   const onTouchStart = (e: TouchEvent) => {
     startX.current = e.touches[0].clientX;
@@ -133,13 +132,9 @@ export function HomeHero({ onBrowse }: { onBrowse: () => void }) {
       ref={root}
       aria-roledescription="carousel"
       aria-label="Campus tutoring highlights"
-      onMouseEnter={() => setHolding(true)}
-      onMouseLeave={() => setHolding(false)}
-      onFocusCapture={() => setHolding(true)}
-      onBlurCapture={() => setHolding(false)}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
-      className="relative isolate h-svh max-h-[64rem] min-h-[36rem] overflow-hidden bg-primary-deep text-white"
+      className="hero-short-screen relative isolate h-svh max-h-[64rem] min-h-[36rem] overflow-hidden bg-primary-deep text-white"
     >
       <div className="hero-media absolute inset-0">
         <div className="hero-parallax absolute inset-x-0 -inset-y-[8%]">
@@ -153,7 +148,15 @@ export function HomeHero({ onBrowse }: { onBrowse: () => void }) {
               style={i === 0 ? undefined : { opacity: 0, visibility: "hidden" }}
               aria-hidden={i !== index}
             >
-              <img src={slide.src} alt={slide.alt} decoding="async" className="size-full object-cover" />
+              <img
+                src={slide.src}
+                alt={slide.alt}
+                loading={i === 0 ? "eager" : "lazy"}
+                fetchPriority={i === 0 ? "high" : "auto"}
+                sizes="100vw"
+                decoding="async"
+                className="size-full object-cover"
+              />
             </div>
           ))}
         </div>
@@ -212,7 +215,7 @@ export function HomeHero({ onBrowse }: { onBrowse: () => void }) {
 
         <div className="hero-fade flex items-end justify-between gap-4">
           <div>
-            <p aria-live={userPaused || holding ? "polite" : "off"} className="text-sm font-semibold">
+            <p aria-live={userPaused ? "polite" : "off"} className="text-sm font-semibold">
               <span className="tabular-nums">{pad(index + 1)}</span>
               <span className="text-white/60"> / {pad(SLIDES.length)}</span>
               <span className="ml-3 hidden text-white/85 sm:inline">{SLIDES[index].label}</span>

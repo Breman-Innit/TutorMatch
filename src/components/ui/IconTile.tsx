@@ -1,9 +1,9 @@
-import type { LucideIcon } from "lucide-react";
+import type { IconComponent } from "@/components/icons";
 import { cn } from "@/lib/cn";
 import { filledTone, softTone, type Tone } from "./tones";
 
 interface IconTileProps {
-  icon: LucideIcon;
+  icon: IconComponent;
   tone?: Tone;
   /** Solid gradient with a white icon instead of a soft tint. */
   filled?: boolean;

@@ -78,6 +78,7 @@ export function HowItWorks() {
               src="/images/tutoring-2.jpg"
               alt="Students studying together around laptops and books"
               loading="lazy"
+              sizes="(max-width: 767px) calc(100vw - 2.5rem), 42vw"
               decoding="async"
               className="absolute inset-x-0 top-[-8%] h-[116%] w-full object-cover"
             />

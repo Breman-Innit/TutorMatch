@@ -26,6 +26,7 @@ export function Portrait({ tutor }: { tutor: Tutor }) {
       src={tutor.photoUrl ?? `/images/tutors/${tutor.id}.jpg`}
       alt={`Portrait of ${tutor.name}`}
       loading="lazy"
+      sizes="(max-width: 767px) 85vw, (max-width: 1023px) 45vw, 22.5rem"
       decoding="async"
       onError={() => setFailed(true)}
       className="size-full object-cover object-[50%_25%] transition-transform duration-700 ease-out group-hover:scale-105"

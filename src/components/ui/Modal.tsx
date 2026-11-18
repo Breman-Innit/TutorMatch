@@ -1,5 +1,6 @@
 import { useEffect, useId, useRef, type ReactNode } from "react";
-import { X, type LucideIcon } from "lucide-react";
+import { X } from "lucide-react";
+import type { IconComponent } from "@/components/icons";
 import { cn } from "@/lib/cn";
 import { IconButton } from "./IconButton";
 import { IconTile } from "./IconTile";
@@ -9,7 +10,7 @@ interface ModalProps {
   onClose: () => void;
   title: string;
   /** Optional icon shown in a gradient tile before the title. */
-  icon?: LucideIcon;
+  icon?: IconComponent;
   children: ReactNode;
   /** Action buttons, aligned to the right. */
   footer?: ReactNode;

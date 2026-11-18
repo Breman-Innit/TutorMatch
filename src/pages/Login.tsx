@@ -2,7 +2,6 @@ import { useState, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router";
 import { IconAlert, IconLock } from "@/components/icons";
 import { useAuth } from "@/auth/AuthProvider";
-import { useAuth } from "@/auth/AuthProvider";
 import { AuthLayout } from "@/components/layout/AuthLayout";
 import { Button, PasswordField, TextField, useToast } from "@/components/ui";
 import { ROUTES } from "@/routes";
@@ -18,6 +17,7 @@ const linkClass = "font-semibold text-primary underline-offset-4 hover:underline
 
 export default function Login() {
   const navigate = useNavigate();
+  const { signIn } = useAuth();
   const toast = useToast();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

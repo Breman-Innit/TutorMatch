@@ -47,6 +47,7 @@ export function TutorCta() {
           src="/images/tutoring-5.jpg"
           alt=""
           loading="lazy"
+          sizes="100vw"
           decoding="async"
           className="cta-img absolute inset-x-0 -top-[10%] h-[120%] w-full object-cover"
         />

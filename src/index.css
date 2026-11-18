@@ -215,3 +215,11 @@ body:has([data-app-shell]) {
     scroll-behavior: auto !important;
   }
 }
+
+/* On short laptop/browser viewports, the hero copy and controls need more room than 100svh. */
+@media (max-height: 700px) {
+  .hero-short-screen {
+    height: 48rem;
+    max-height: none;
+  }
+}
